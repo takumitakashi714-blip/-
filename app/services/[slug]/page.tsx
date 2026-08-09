@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import {
@@ -85,14 +86,25 @@ export default async function ServiceDetailPage({
                 {earJewelryTestimonials.map((t, i) => (
                   <div
                     key={i}
-                    className="rounded-2xl border border-[var(--color-border)] bg-white p-5"
+                    className="overflow-hidden rounded-2xl border border-[var(--color-border)] bg-white"
                   >
-                    <p className="text-sm leading-relaxed text-[var(--color-ink-soft)]">
-                      &ldquo;{t.text}&rdquo;
-                    </p>
-                    <p className="mt-3 text-xs font-semibold text-[var(--color-ink)]">
-                      {t.name}
-                    </p>
+                    {t.image && (
+                      <Image
+                        src={t.image}
+                        alt={`耳つぼジュエリーを実際に付けたお客様の写真${i + 1}`}
+                        width={869}
+                        height={1883}
+                        className="w-full"
+                      />
+                    )}
+                    <div className="p-5">
+                      <p className="text-sm leading-relaxed text-[var(--color-ink-soft)]">
+                        &ldquo;{t.text}&rdquo;
+                      </p>
+                      <p className="mt-3 text-xs font-semibold text-[var(--color-ink)]">
+                        {t.name}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>

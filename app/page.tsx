@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { services, earJewelryTestimonials } from "@/lib/data/services";
 import { products } from "@/lib/data/products";
 import { formatPrice } from "@/lib/format";
@@ -118,18 +119,29 @@ export default function Home() {
 
       <section className="container-page py-14">
         <SectionHeading eyebrow="Voice" title="耳つぼジュエリー お客様の声" />
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:max-w-2xl sm:mx-auto sm:grid-cols-2">
           {earJewelryTestimonials.map((t, i) => (
             <div
               key={i}
-              className="rounded-2xl border border-[var(--color-border)] bg-white p-6"
+              className="overflow-hidden rounded-2xl border border-[var(--color-border)] bg-white"
             >
-              <p className="text-sm leading-relaxed text-[var(--color-ink-soft)]">
-                &ldquo;{t.text}&rdquo;
-              </p>
-              <p className="mt-4 text-xs font-semibold text-[var(--color-ink)]">
-                {t.name}
-              </p>
+              {t.image && (
+                <Image
+                  src={t.image}
+                  alt={`耳つぼジュエリーを実際に付けたお客様の写真${i + 1}`}
+                  width={869}
+                  height={1883}
+                  className="w-full"
+                />
+              )}
+              <div className="p-6">
+                <p className="text-sm leading-relaxed text-[var(--color-ink-soft)]">
+                  &ldquo;{t.text}&rdquo;
+                </p>
+                <p className="mt-4 text-xs font-semibold text-[var(--color-ink)]">
+                  {t.name}
+                </p>
+              </div>
             </div>
           ))}
         </div>

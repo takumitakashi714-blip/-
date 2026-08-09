@@ -43,10 +43,12 @@ export const earJewelryTestimonials: Testimonial[] = [
   {
     name: "ご来店のお客様",
     text: "耳つぼジュエリーをつけてもらいました。腰痛・血流・痩身のツボを見ていただいて、左右で少し変えてもらいました。かわいくてお気に入りです。",
+    image: "/testimonials/ear-jewelry-voice-1.jpg",
   },
   {
     name: "ご来店のお客様",
     text: "可愛い耳つぼアクセサリーを付けていただきました。腰痛・頭痛・痩身のツボに置いてもらって、うれしくて涙が出ました。ありがとうございます。",
+    image: "/testimonials/ear-jewelry-voice-2.jpg",
   },
 ];
 

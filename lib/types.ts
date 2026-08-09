@@ -19,6 +19,7 @@ export type Service = {
 export type Testimonial = {
   name: string;
   text: string;
+  image?: string;
 };
 
 export type Product = {
