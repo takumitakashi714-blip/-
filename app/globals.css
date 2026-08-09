@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+:root {
+  --color-cream: #fdf6ef;
+  --color-surface: #ffffff;
+  --color-ink: #3a2e28;
+  --color-ink-soft: #6b5d54;
+  --color-primary: #c1745a;
+  --color-primary-dark: #a15c45;
+  --color-secondary: #6e8b6a;
+  --color-secondary-dark: #55704f;
+  --color-gold: #c9a34e;
+  --color-border: #ead9c9;
+}
+
+@theme inline {
+  --color-cream: var(--color-cream);
+  --color-surface: var(--color-surface);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-dark: var(--color-secondary-dark);
+  --color-gold: var(--color-gold);
+  --color-border: var(--color-border);
+  --font-sans: var(--font-noto-sans-jp), "Hiragino Sans", sans-serif;
+  --font-serif: var(--font-shippori-mincho), "Hiragino Mincho ProN", serif;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+.font-brand {
+  font-family: var(--font-serif);
+}
+
+.container-page {
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
