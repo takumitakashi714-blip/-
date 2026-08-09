@@ -7,7 +7,6 @@ import { useCart } from "@/components/CartProvider";
 const NAV_LINKS = [
   { href: "/services", label: "サービス" },
   { href: "/shop", label: "ショップ" },
-  { href: "/booking", label: "ご予約" },
   { href: "/about", label: "私たちについて" },
   { href: "/contact", label: "お問い合わせ" },
 ];

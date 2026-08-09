@@ -9,7 +9,7 @@ export default function Footer() {
             花笑み <span className="text-sm">-Hanaemi-</span>
           </p>
           <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-soft)]">
-            化粧品販売・ヘッドスパ・マッサージ・耳つぼジュエリー・ヨガ。
+            化粧品販売・フェイシャルエステ・耳つぼジュエリー。
             <br />
             からだとこころに、やさしい時間をお届けします。
           </p>
@@ -28,11 +28,6 @@ export default function Footer() {
             <li>
               <Link href="/shop" className="hover:text-[var(--color-primary-dark)]">
                 オンラインショップ
-              </Link>
-            </li>
-            <li>
-              <Link href="/booking" className="hover:text-[var(--color-primary-dark)]">
-                ご予約
               </Link>
             </li>
             <li>

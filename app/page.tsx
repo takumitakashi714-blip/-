@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { services } from "@/lib/data/services";
+import { services, earJewelryTestimonials } from "@/lib/data/services";
 import { products } from "@/lib/data/products";
 import { formatPrice } from "@/lib/format";
 import SectionHeading from "@/components/SectionHeading";
@@ -8,7 +8,7 @@ const highlights = [
   {
     icon: "💄",
     title: "化粧品販売",
-    description: "オリジナルスキンケアをオンラインで購入できます。",
+    description: "化粧水・乳液などをオンラインで購入できます。",
     href: "/shop",
   },
   ...services.map((s) => ({
@@ -19,21 +19,6 @@ const highlights = [
   })),
 ];
 
-const testimonials = [
-  {
-    name: "40代 女性",
-    text: "ヘッドスパのあと、頭が驚くほど軽くなりました。施術中は寝てしまうくらいリラックスできます。",
-  },
-  {
-    name: "30代 女性",
-    text: "耳つぼジュエリーがかわいくて、施術のたびに気分が上がります。相談にも親身にのってもらえて安心です。",
-  },
-  {
-    name: "50代 女性",
-    text: "ヨガのレッスンは少人数なので、自分のペースで参加できます。先生の声がやさしくて毎回癒されています。",
-  },
-];
-
 export default function Home() {
   return (
     <div>
@@ -42,7 +27,7 @@ export default function Home() {
         <div className="pointer-events-none absolute -left-24 top-40 h-72 w-72 rounded-full bg-[var(--color-secondary)]/15 blur-3xl" />
         <div className="container-page relative flex flex-col items-center gap-6 py-20 text-center sm:py-28">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--color-primary)]">
-            Cosmetics / Head Spa / Massage / Ear Jewelry / Yoga
+            Cosmetics / Facial Esthetic / Ear Jewelry
           </p>
           <h1 className="font-brand max-w-3xl text-3xl leading-relaxed text-[var(--color-ink)] sm:text-5xl sm:leading-relaxed">
             からだとこころに、
@@ -50,15 +35,15 @@ export default function Home() {
             やさしい時間を。
           </h1>
           <p className="max-w-xl text-sm leading-relaxed text-[var(--color-ink-soft)] sm:text-base">
-            化粧品販売・ヘッドスパ・マッサージ・耳つぼジュエリー・ヨガ。
-            5つのメニューで、あなたの「きれい」と「ほっとする時間」に寄り添います。
+            化粧品販売・フェイシャルエステ・耳つぼジュエリー。
+            あなたの「きれい」と「ほっとする時間」に寄り添います。
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             <Link
-              href="/booking"
+              href="/contact"
               className="rounded-full bg-[var(--color-primary)] px-7 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-[var(--color-primary-dark)]"
             >
-              ご予約はこちら
+              ご予約・お問い合わせ
             </Link>
             <Link
               href="/shop"
@@ -73,10 +58,10 @@ export default function Home() {
       <section className="container-page py-14">
         <SectionHeading
           eyebrow="Menu"
-          title="5つのサービス"
+          title="サービス"
           description="お客様おひとりおひとりに合わせて、心と体がゆるむ時間をご提案します。"
         />
-        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {highlights.map((item) => (
             <Link
               key={item.title}
@@ -99,11 +84,11 @@ export default function Home() {
         <div className="container-page">
           <SectionHeading
             eyebrow="Shop"
-            title="人気のスキンケアアイテム"
-            description="サロンでも使用しているオリジナルコスメを、ご自宅でも。"
+            title="スキンケアアイテム"
+            description="サロンでも使用している化粧水・乳液を、ご自宅でも。"
           />
-          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
-            {products.slice(0, 3).map((product) => (
+          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:max-w-xl sm:mx-auto">
+            {products.map((product) => (
               <Link
                 key={product.slug}
                 href={`/shop/${product.slug}`}
@@ -125,18 +110,18 @@ export default function Home() {
               href="/shop"
               className="text-sm font-medium text-[var(--color-primary-dark)] underline underline-offset-4"
             >
-              ショップをもっと見る →
+              ショップを見る →
             </Link>
           </div>
         </div>
       </section>
 
       <section className="container-page py-14">
-        <SectionHeading eyebrow="Voice" title="お客様の声" />
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
-          {testimonials.map((t) => (
+        <SectionHeading eyebrow="Voice" title="耳つぼジュエリー お客様の声" />
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+          {earJewelryTestimonials.map((t, i) => (
             <div
-              key={t.name}
+              key={i}
               className="rounded-2xl border border-[var(--color-border)] bg-white p-6"
             >
               <p className="text-sm leading-relaxed text-[var(--color-ink-soft)]">
@@ -153,16 +138,16 @@ export default function Home() {
       <section className="bg-[var(--color-secondary)]/10 py-16">
         <div className="container-page flex flex-col items-center gap-5 text-center">
           <h2 className="font-brand text-2xl text-[var(--color-ink)] sm:text-3xl">
-            まずは体験してみませんか？
+            まずはお気軽にお問い合わせください
           </h2>
           <p className="max-w-xl text-sm leading-relaxed text-[var(--color-ink-soft)]">
-            オンラインで24時間ご予約を受け付けています。初めての方は体験メニューもご用意しています。
+            ご来店のご予約・メニューに関するご相談は、お電話またはお問い合わせフォームから承っております。
           </p>
           <Link
-            href="/booking"
+            href="/contact"
             className="rounded-full bg-[var(--color-secondary)] px-7 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-[var(--color-secondary-dark)]"
           >
-            空き状況を見て予約する
+            お問い合わせはこちら
           </Link>
         </div>
       </section>

@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { services, getServiceBySlug } from "@/lib/data/services";
-import { formatPrice } from "@/lib/format";
+import {
+  services,
+  getServiceBySlug,
+  earJewelryTestimonials,
+} from "@/lib/data/services";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -73,10 +76,27 @@ export default async function ServiceDetailPage({
             ))}
           </ul>
 
-          {service.category === "class" && service.classTimes && (
-            <p className="mt-6 rounded-xl bg-[var(--color-secondary)]/10 p-4 text-sm text-[var(--color-ink)]">
-              開催時間：{service.classTimes.join(" / ")}（各回定員 {service.capacity} 名の少人数制）
-            </p>
+          {service.slug === "ear-jewelry" && (
+            <div className="mt-10">
+              <p className="font-brand text-lg text-[var(--color-ink)]">
+                お客様の声
+              </p>
+              <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                {earJewelryTestimonials.map((t, i) => (
+                  <div
+                    key={i}
+                    className="rounded-2xl border border-[var(--color-border)] bg-white p-5"
+                  >
+                    <p className="text-sm leading-relaxed text-[var(--color-ink-soft)]">
+                      &ldquo;{t.text}&rdquo;
+                    </p>
+                    <p className="mt-3 text-xs font-semibold text-[var(--color-ink)]">
+                      {t.name}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
           )}
         </div>
 
@@ -85,39 +105,29 @@ export default async function ServiceDetailPage({
             <p className="font-brand text-lg text-[var(--color-ink)]">
               メニューと料金
             </p>
-            <ul className="mt-4 space-y-4">
-              {service.variants.map((variant) => (
-                <li
-                  key={variant.id}
-                  className="rounded-xl border border-[var(--color-border)] p-4"
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="text-sm font-semibold text-[var(--color-ink)]">
-                        {variant.name}
-                      </p>
-                      <p className="text-xs text-[var(--color-ink-soft)]">
-                        {variant.durationMinutes}分
-                      </p>
-                      {variant.description && (
-                        <p className="mt-1 text-xs text-[var(--color-ink-soft)]">
-                          {variant.description}
-                        </p>
-                      )}
-                    </div>
-                    <p className="whitespace-nowrap text-sm font-semibold text-[var(--color-primary-dark)]">
-                      {formatPrice(variant.price)}
+            <p className="mt-2 text-2xl font-semibold text-[var(--color-primary-dark)]">
+              {service.priceLabel}
+            </p>
+            <ul className="mt-4 space-y-3 border-t border-[var(--color-border)] pt-4">
+              {service.menu.map((item) => (
+                <li key={item.id} className="text-sm">
+                  <p className="font-medium text-[var(--color-ink)]">
+                    {item.name}
+                  </p>
+                  {item.description && (
+                    <p className="mt-0.5 text-xs text-[var(--color-ink-soft)]">
+                      {item.description}
                     </p>
-                  </div>
-                  <Link
-                    href={`/booking?service=${service.slug}&variant=${variant.id}`}
-                    className="mt-3 block rounded-full bg-[var(--color-primary)] px-4 py-2 text-center text-xs font-medium text-white transition hover:bg-[var(--color-primary-dark)]"
-                  >
-                    この内容で予約する
-                  </Link>
+                  )}
                 </li>
               ))}
             </ul>
+            <Link
+              href="/contact"
+              className="mt-5 block rounded-full bg-[var(--color-primary)] px-4 py-2.5 text-center text-sm font-medium text-white transition hover:bg-[var(--color-primary-dark)]"
+            >
+              ご来店・お問い合わせはこちら
+            </Link>
           </div>
         </div>
       </div>

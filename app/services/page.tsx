@@ -1,13 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { services } from "@/lib/data/services";
-import { formatPrice } from "@/lib/format";
 import SectionHeading from "@/components/SectionHeading";
 
 export const metadata: Metadata = {
   title: "サービス一覧 | 花笑み -Hanaemi-",
-  description:
-    "ヘッドスパ・マッサージ・耳つぼジュエリー・ヨガのメニューと料金をご紹介します。",
+  description: "フェイシャルエステ・耳つぼジュエリーのメニューと料金をご紹介します。",
 };
 
 export default function ServicesPage() {
@@ -16,7 +14,7 @@ export default function ServicesPage() {
       <SectionHeading
         eyebrow="Menu"
         title="サービス一覧"
-        description="お悩みや気分に合わせてお選びください。メニュー詳細ページからご予約に進めます。"
+        description="お悩みや気分に合わせてお選びください。ご来店のご予約はお電話またはお問い合わせフォームから承っております。"
       />
 
       <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -40,28 +38,19 @@ export default function ServicesPage() {
             <p className="text-sm leading-relaxed text-[var(--color-ink-soft)]">
               {service.tagline}
             </p>
-            <ul className="mt-auto space-y-1 border-t border-[var(--color-border)] pt-4 text-sm text-[var(--color-ink)]">
-              {service.variants.map((v) => (
-                <li key={v.id} className="flex justify-between gap-4">
-                  <span>
-                    {v.name}（{v.durationMinutes}分）
-                  </span>
-                  <span className="whitespace-nowrap font-semibold text-[var(--color-primary-dark)]">
-                    {formatPrice(v.price)}
-                  </span>
-                </li>
-              ))}
-            </ul>
+            <p className="mt-auto border-t border-[var(--color-border)] pt-4 text-lg font-semibold text-[var(--color-primary-dark)]">
+              {service.priceLabel}
+            </p>
           </Link>
         ))}
       </div>
 
       <div className="mt-12 rounded-2xl border border-[var(--color-border)] bg-white p-7 text-center">
         <p className="font-brand text-lg text-[var(--color-ink)]">
-          化粧品もオンラインでお求めいただけます
+          化粧水・乳液もオンラインでお求めいただけます
         </p>
         <p className="mt-2 text-sm text-[var(--color-ink-soft)]">
-          サロンで使用しているオリジナルスキンケアラインをショップページでご紹介しています。
+          サロンで使用しているスキンケアアイテムをショップページでご紹介しています。
         </p>
         <Link
           href="/shop"

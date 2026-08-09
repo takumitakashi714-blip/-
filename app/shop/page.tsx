@@ -7,7 +7,7 @@ import AddToCartButton from "@/components/AddToCartButton";
 
 export const metadata: Metadata = {
   title: "オンラインショップ | 花笑み -Hanaemi-",
-  description: "花笑みオリジナルスキンケアをオンラインで購入できます。",
+  description: "化粧水・乳液をオンラインで購入できます。",
 };
 
 export default function ShopPage() {
@@ -16,10 +16,10 @@ export default function ShopPage() {
       <SectionHeading
         eyebrow="Shop"
         title="オンラインショップ"
-        description="サロンで実際に使用しているオリジナルスキンケアラインです。全国へ配送いたします。"
+        description="サロンで実際に使用している化粧水・乳液です。全国へ配送いたします。"
       />
 
-      <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:max-w-xl sm:mx-auto">
         {products.map((product) => (
           <div
             key={product.slug}

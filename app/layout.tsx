@@ -18,9 +18,9 @@ const shipporiMincho = Shippori_Mincho({
 });
 
 export const metadata: Metadata = {
-  title: "花笑み -Hanaemi- | 化粧品・ヘッドスパ・マッサージ・耳つぼジュエリー・ヨガ",
+  title: "花笑み -Hanaemi- | 化粧品・フェイシャルエステ・耳つぼジュエリー",
   description:
-    "化粧品販売、ヘッドスパ、マッサージ、耳つぼジュエリー、ヨガ。からだとこころに、やさしい時間をお届けするサロン「花笑み -Hanaemi-」の公式サイト。オンラインショップとご予約はこちらから。",
+    "化粧品販売、フェイシャルエステ、耳つぼジュエリー。からだとこころに、やさしい時間をお届けするサロン「花笑み -Hanaemi-」の公式サイト。化粧水・乳液のオンラインショップもございます。",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

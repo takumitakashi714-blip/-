@@ -1,25 +1,24 @@
-export type ServiceCategory = "treatment" | "class";
-
-export type ServiceVariant = {
+export type ServiceMenuItem = {
   id: string;
   name: string;
-  durationMinutes: number;
-  price: number;
   description?: string;
 };
 
 export type Service = {
   slug: string;
-  category: ServiceCategory;
   name: string;
   kana: string;
   icon: string;
   tagline: string;
   description: string;
   points: string[];
-  variants: ServiceVariant[];
-  classTimes?: string[];
-  capacity?: number;
+  menu: ServiceMenuItem[];
+  priceLabel: string;
+};
+
+export type Testimonial = {
+  name: string;
+  text: string;
 };
 
 export type Product = {
@@ -39,26 +38,6 @@ export type CartItem = {
   name: string;
   price: number;
   quantity: number;
-};
-
-export type BookingStatus = "confirmed" | "cancelled";
-
-export type Booking = {
-  id: number;
-  serviceSlug: string;
-  serviceName: string;
-  variantId: string;
-  variantName: string;
-  durationMinutes: number;
-  price: number;
-  date: string;
-  time: string;
-  customerName: string;
-  phone: string;
-  email: string;
-  notes: string | null;
-  status: BookingStatus;
-  createdAt: string;
 };
 
 export type Order = {
