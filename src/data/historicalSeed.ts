@@ -668,6 +668,47 @@ export const HISTORICAL_SESSIONS: SeedSession[] = [
         sets: [
           { weight: 60, reps: 6 },
           { weight: 60, reps: 6 },
+          { weight: 60, reps: 5 },
+        ],
+      },
+      {
+        exerciseName: 'インクラインダンベルプレス',
+        sets: [
+          { weight: 10, reps: 10 },
+          { weight: 10, reps: 12 },
+          { weight: 10, reps: 12 },
+        ],
+      },
+      {
+        exerciseName: 'サイドレイズ',
+        sets: [
+          { weight: 7, reps: 15 },
+          { weight: 7, reps: 12 },
+          { weight: 7, reps: 15 },
+        ],
+      },
+      {
+        exerciseName: 'チェストプレス',
+        sets: [
+          { weight: 40, reps: 10 },
+          { weight: 40, reps: 10 },
+          { weight: 40, reps: 10 },
+        ],
+      },
+      {
+        exerciseName: 'ショルダープレス',
+        sets: [
+          { weight: 25, reps: 8 },
+          { weight: 25, reps: 5 },
+          { weight: 20, reps: 8 },
+        ],
+      },
+      {
+        exerciseName: 'アブドミナル',
+        sets: [
+          { weight: 52.5, reps: 15 },
+          { weight: 52.5, reps: 15 },
+          { weight: 52.5, reps: 17 },
         ],
       },
     ],
