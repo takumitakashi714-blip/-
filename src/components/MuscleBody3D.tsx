@@ -35,6 +35,11 @@ function AnatomyScene({ primary, secondary }: { primary: MuscleKey[]; secondary:
       const mesh = obj as THREE.Mesh
       if (!mesh.isMesh || !mesh.material) return
       const mat = (mesh.material as THREE.MeshStandardMaterial).clone()
+      // Flatten the glossy "wet tissue" look of the raw medical asset into
+      // something closer to an illustration — less unsettling in a fitness
+      // app than a literally skinned, shiny muscle surface.
+      mat.roughness = Math.max(mat.roughness, 0.75)
+      mat.metalness = 0
       mesh.userData.baseEmissive = mat.emissive.clone()
       mesh.userData.baseEmissiveIntensity = mat.emissiveIntensity
       mesh.material = mat
@@ -81,9 +86,72 @@ function AnatomyScene({ primary, secondary }: { primary: MuscleKey[]; secondary:
       // body's long axis instead of across it.
       scene.rotation.x = -Math.PI / 2
       scene.updateMatrixWorld(true)
-      const box = new THREE.Box3().setFromObject(scene)
+
+      // Hide parts that read as unsettling rather than informative.
+      // Note: we deliberately do NOT crop the head by height — doing so
+      // leaves a hollow neck cavity that the deep spinal/neck muscles poke
+      // through from behind, which looks worse than the face. Instead we
+      // remove only the thin facial-expression muscles (eyes/mouth), while
+      // leaving the jaw muscles (temporalis/masseter) to keep the head's
+      // shape recognizable, plus the hand/foot/digit tendons — including
+      // ones that physically belong to the forearm/shin (e.g. "flexor
+      // digitorum") — whose long thin strands fan out into finger/toe claws.
+      const DIGIT_PATTERNS = [
+        'digiti',
+        'digitorum',
+        'pollicis',
+        'hallucis',
+        'palmaris',
+        'lumbrical',
+        'interosse',
+        'carpi',
+        'retinaculum',
+        'palmar',
+        'plantar',
+        'calcaneal',
+        'opponens',
+        'of left hand',
+        'of right hand',
+        'of left foot',
+        'of right foot',
+      ]
+      const FACE_PATTERNS = [
+        'frontalis',
+        'orbicularis',
+        'zygomaticus',
+        'levator labii',
+        'depressor labii',
+        'depressor anguli',
+        'risorius',
+        'mentalis',
+        'procerus',
+        'nasalis',
+        'corrugator',
+        'buccinator',
+        'levator anguli',
+      ]
+      scene.traverse((obj) => {
+        const mesh = obj as THREE.Mesh
+        if (!mesh.isMesh) return
+        const normalized = mesh.name.toLowerCase().replace(/_/g, ' ')
+        if (
+          DIGIT_PATTERNS.some((pattern) => normalized.includes(pattern)) ||
+          FACE_PATTERNS.some((pattern) => normalized.includes(pattern))
+        ) {
+          mesh.visible = false
+        }
+      })
+
+      // Re-measure from only what's still visible so the camera frames the
+      // trimmed body tightly.
+      const box = new THREE.Box3()
+      scene.traverse((obj) => {
+        const mesh = obj as THREE.Mesh
+        if (mesh.isMesh && mesh.visible) box.expandByObject(mesh)
+      })
       const center = box.getCenter(new THREE.Vector3())
       const size = box.getSize(new THREE.Vector3())
+
       const persp = camera as THREE.PerspectiveCamera
       const fov = (persp.fov * Math.PI) / 180
       const dist = (Math.max(size.y, size.x) / 2 / Math.tan(fov / 2)) * 1.35
