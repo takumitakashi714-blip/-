@@ -5,6 +5,7 @@ const TABS = [
   { to: '/routines', label: 'メニュー', icon: '📋', end: false },
   { to: '/history', label: '履歴', icon: '📈', end: false },
   { to: '/body', label: '体重', icon: '⚖️', end: false },
+  { to: '/muscles', label: '部位', icon: '💪', end: false },
 ]
 
 export function BottomNav() {
